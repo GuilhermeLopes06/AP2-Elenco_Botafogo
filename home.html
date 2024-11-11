@@ -9,14 +9,14 @@
 </head>
 <body>
     <button id="logout">Logout</button>
+    <div id="filtros">
+        <button onclick="carregarDados('masculino')">Masculino</button>
+        <button onclick="carregarDados('feminino')">Feminino</button>
+        <button onclick="carregarDados('all')">Todos</button>
+    </div>
+
     <div id="container">
         <!-- O conteúdo dos cards será carregado aqui -->
     </div>
-    <script>
-        // Verifica se o usuário está logado
-        if (!sessionStorage.getItem('logado')) {
-            window.location.href = "index.html"; // Redireciona para a página de login se não estiver logado
-        }
-    </script>
 </body>
 </html>
