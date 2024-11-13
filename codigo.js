@@ -7,6 +7,15 @@ const pega_json = async (caminho) => {
 };
 
 const container = document.getElementById("container");
+const campoPesquisa = document.getElementById('campoPesquisa');
+
+let filtroAtuais = 'masculino';  // Filtro inicial padrão
+let dadosAtuais = {};  // Armazena os dados carregados para evitar duplicação
+let carregando = false;  // Indicador de carregamento
+
+campoPesquisa.addEventListener('input', () => {
+    carregarDados(filtroAtuais);  // Atualiza os dados conforme o filtro e o texto da pesquisa
+});
 
 const manipulaClick = (e) => {
     const id = e.currentTarget.dataset.id;
@@ -44,34 +53,65 @@ const montaCard = (atleta) => {
     return cartao;
 };
 
-// Função para carregar dados com base no filtro selecionado
+// Função para carregar dados com base no filtro e texto de pesquisa
 const carregarDados = (filtro) => {
-    container.innerHTML = ""; // Limpa os cards existentes
-    pega_json(`${urlBase}${filtro}`).then((r) => {
-        r.forEach((ele) => container.appendChild(montaCard(ele)));
-    });
-};
+    if (carregando) return;  // Impede múltiplos carregamentos simultâneos
 
-// Carrega o filtro 'masculino' por padrão ao abrir a página
-carregarDados('masculino');
+    // Limpa o container ANTES de adicionar os novos cards
+    container.innerHTML = ""; 
 
-// Verificar login e redirecionar se não estiver logado
-if (!sessionStorage.getItem('logado') && window.location.pathname.includes("home.html")) {
-    window.location.href = "index.html";
-}
+    const textoPesquisa = campoPesquisa.value.toLowerCase(); // Pega o texto da pesquisa
 
-const manipulaBotao = () => {
-    const texto = document.getElementById('senha').value;
-    if (hex_md5(texto) === '5029cc9dd0295ded2f500084635c18c1') {
-        sessionStorage.setItem('logado', 'sim');
-        window.location.href = "home.html";
+    // Verifica se já temos os dados carregados para o filtro atual
+    if (dadosAtuais[filtro]) {
+        // Se os dados já estão carregados, filtra os dados conforme a pesquisa
+        const dadosFiltrados = dadosAtuais[filtro].filter((atleta) =>
+            atleta.nome.toLowerCase().includes(textoPesquisa)  // Verifica se o texto está em qualquer parte do nome
+        );
+        
+        // Adiciona os cards ao container
+        dadosFiltrados.forEach((atleta) => {
+            container.appendChild(montaCard(atleta));
+        });
     } else {
-        alert('Você errou a senha');
+        // Caso contrário, faça a requisição para a API
+        carregando = true; // Marca como carregando
+
+        pega_json(`${urlBase}${filtro}`).then((r) => {
+            // Armazena os dados carregados para o filtro atual
+            dadosAtuais[filtro] = r;
+
+            // Filtra os dados conforme a pesquisa
+            const dadosFiltrados = r.filter((atleta) =>
+                atleta.nome.toLowerCase().includes(textoPesquisa)  // Verifica se o texto está em qualquer parte do nome
+            );
+            
+            // Adiciona os cards ao container
+            dadosFiltrados.forEach((atleta) => {
+                container.appendChild(montaCard(atleta));
+            });
+
+            carregando = false; // Marca como não carregando após a requisição
+        }).catch((err) => {
+            console.error("Erro ao carregar dados:", err);
+            carregando = false; // Garante que o carregamento seja finalizado mesmo em caso de erro
+        });
     }
 };
 
-// Função de logout para limpar o sessionStorage
-document.getElementById('logout').onclick = () => {
-    sessionStorage.removeItem('logado');
-    window.location.href = "index.html";
-};
+// Filtros de gênero
+document.querySelectorAll('#filtros button').forEach(button => {
+    button.addEventListener('click', () => {
+        // Quando o filtro "Todos" é clicado, fazemos a requisição com "all"
+        const filtro = button.textContent.toLowerCase();
+
+        // Ajusta o filtro com base no texto do botão
+        filtroAtuais = filtro === 'todos' ? 'all' : filtro;
+
+        // Carrega os dados para o filtro selecionado
+        carregarDados(filtroAtuais); 
+    });
+});
+
+// Carrega os dados iniciais com o filtro 'masculino'
+carregarDados('masculino');
