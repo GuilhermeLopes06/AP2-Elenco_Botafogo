@@ -112,8 +112,11 @@ document.querySelectorAll('#filtros button').forEach(button => {
         carregarDados(filtroAtuais); 
     });
 });
-document.getElementById('logout').onclick = () => 
-window.location.href = "index.html";
-sessionStorage.removeItem('logado');
-// Carrega os dados iniciais com o filtro 'masculino'
-carregarDados('masculino');
+
+// Logout: limpa o sessionStorage e redireciona para a página de login
+document.getElementById('logout').onclick = () => {
+    sessionStorage.removeItem('logado');
+    window.location.href = "index.html";
+};
+    carregarDados('masculino'); // Exemplo de carregamento de dados, ajuste conforme seu código
+

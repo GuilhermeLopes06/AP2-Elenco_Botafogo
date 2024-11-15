@@ -10,8 +10,7 @@ const manipulaBotao = () => {
 
 document.getElementById('botao').onclick = manipulaBotao;
 
-// Opcional: Logout para limpar o sessionStorage
-document.getElementById('logout').onclick = () => sessionStorage.removeItem('logado');
+
 
 // Verifica se o usuário já está logado
 if (sessionStorage.getItem('logado')) {
