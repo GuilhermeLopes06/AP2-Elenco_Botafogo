@@ -1,42 +1,92 @@
-body{
+/* Importando a fonte */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* Estilização do body */
+body {
+    font-family: 'Libre Baskerville', serif;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;}
-
-
-@media(min-width : 768px){
-    body{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;}
-
-#capa{
-    margin: auto 0;
-    padding: 350px;
+    flex-direction: column; /* Layout em coluna por padrão */
+    align-items: center; /* Centraliza elementos verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Faz o body ocupar a tela inteira */
+    box-sizing: border-box;
+    background-image: url('fundo.jpg'); /* Substitua 'fundo.jpg' pelo caminho da sua imagem */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
 }
 
-#login{
+/* Estilização do #capa */
+#capa {
+    color: #f9f9f9;
+    text-align: center;
+    margin: 0 auto; /* Centraliza o elemento horizontalmente */
+}
+
+.escudo {
+    width: 100px; /* Ajusta o tamanho da imagem */
+    height: auto; /* Mantém a proporção */
+    display: block;
+    margin: 0 auto; /* Centraliza a imagem */
+}
+
+/* Estilização do #login */
+#login {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: 100px;
-    
-    
-}
-#login input{
-    width: 90%;
-    height: 50px;
+    justify-content: center;
+    width: 70%; /* Largura responsiva */
+    max-width: 400px; /* Largura máxima */
+    margin: 20px auto; /* Espaçamento ao redor */
+    padding: 20px;
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
 }
 
-#login button{
-    width: 30%;
-    padding: 8px;
-    background-color: aqua;
-
+#login input {
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 350px; /* Limita a largura */
+    height: 40px;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+#login button {
+    width: 100%; /* Ocupa toda a largura */
+    max-width: 150px; /* Largura máxima */
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+#login button:hover {
+    background-color: #00ced1; /* Cor ao passar o mouse */
+}
+
+/* Responsividade: dispositivos maiores */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row; /* Organiza os elementos lado a lado */
+        align-items: center; /* Centraliza verticalmente */
+        justify-content: center; /* Centraliza horizontalmente */
+    }
+
+    #capa {
+        margin-left: 10%; /* Espaçamento entre capa e login */
+    }
+
+    #login {
+        margin: 0; /* Remove margens extras */
+        width: 100%; /* Ajusta automaticamente a largura */
+        margin-right: 20%; /* Espaçamento entre capa e login */
+    }
+}

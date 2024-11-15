@@ -1,6 +1,6 @@
 const manipulaBotao = () => {
     const texto = document.getElementById('senha').value;
-    if (hex_md5(texto) === 'ce4423ab15f808627ea824dafcd31328') {
+    if (hex_md5(texto) === '67dc411435f0b276521abd207cfa2b41') {
         sessionStorage.setItem('logado', 'sim');
         window.location.href = "home.html"; // Redireciona para home.html após login bem-sucedido
     } else {
