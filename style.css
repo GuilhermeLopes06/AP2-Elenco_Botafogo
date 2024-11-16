@@ -25,6 +25,10 @@ body {
     margin: 0 auto; /* Centraliza o elemento horizontalmente */
 }
 
+#capa h1{
+    font-style: italic;
+}
+
 .escudo {
     width: 100px; /* Ajusta o tamanho da imagem */
     height: auto; /* Mantém a proporção */
@@ -78,15 +82,17 @@ body {
         flex-direction: row; /* Organiza os elementos lado a lado */
         align-items: center; /* Centraliza verticalmente */
         justify-content: center; /* Centraliza horizontalmente */
+        gap: 8%;
     }
 
     #capa {
         margin-left: 10%; /* Espaçamento entre capa e login */
+        width: 40%;
     }
 
     #login {
         margin: 0; /* Remove margens extras */
         width: 100%; /* Ajusta automaticamente a largura */
-        margin-right: 20%; /* Espaçamento entre capa e login */
+        margin-right: 15%; /* Espaçamento entre capa e login */
     }
 }
