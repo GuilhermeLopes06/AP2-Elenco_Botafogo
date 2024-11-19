@@ -17,6 +17,8 @@ html, body {
     color: aliceblue;
     background-color: black;
     margin-left: 84%;
+    text-align: center;
+    
 }
 
 #logout:hover {

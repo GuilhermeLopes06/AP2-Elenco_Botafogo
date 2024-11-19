@@ -23,9 +23,24 @@ body h1, body h3, body p, body img, body a {
 }
 
 body a {
-    font-size: 1.6rem;
+    font-size: 1rem;
     color: white;
     margin-bottom: 5px;
+    position: fixed;
+    bottom: 20px; /* Distância do botão da parte inferior da tela */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta o posicionamento para o centro */
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+    cursor: pointer;
+}
+
+a:hover {
+    transform: scale(1.05) translateX(-50%); /* Aumenta o tamanho e mantém o botão centralizado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 .jogador-stats {
     margin: 5px 0; 
@@ -44,6 +59,9 @@ body a {
 
     body h1 {
         font-size: 2.5rem; /* Aumenta o tamanho da fonte em telas maiores */
+    }
+    body a{
+        font-size: 1.6rem;
     }
 
     .jogador-imagem {
