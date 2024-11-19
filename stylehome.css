@@ -11,10 +11,27 @@ html, body {
     box-sizing: border-box; /* Inclui padding e border no tamanho total dos elementos */
 }
 
-
-#logout{
- 
+#logout {
+    width: 15%;
+    font-size: 1.3rem;
+    color: aliceblue;
+    background-color: black;
+    margin-left: 84%;
 }
+
+#logout:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.escudo {
+    width: 100px; /* Ajusta o tamanho da imagem */
+    height: auto; /* Mantém a proporção */
+    display: block;
+    margin: 0 auto; /* Centraliza a imagem */
+    margin-bottom: 5px;
+}
+
 /* Estilo para os filtros */
 #filtros {
     margin: 0 auto;
@@ -34,6 +51,19 @@ html, body {
     font-size: 1rem;
 }
 
+#filtros button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Seleção do filtro para dispositivos móveis */
+#selecionaGenero {
+    display: none;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
 /* Estilos para a barra de pesquisa */
 #barraPesquisa {
     margin-bottom: 20px;
@@ -51,25 +81,31 @@ html, body {
 
 /* Estilos para o container e os cards (Mobile First) */
 #container {
+    max-width: 1400px; /* Limita o tamanho do container */
     display: grid;
     grid-template-columns: auto; /* 1 coluna por padrão (mobile first) */
-    align-items: center;
-    justify-content: center;
-    margin: auto 0;
+    gap: 10px; /* Espaçamento entre os itens */
+    place-items: center; /* Centraliza os itens horizontal e verticalmente */
+    margin: 0 auto; /* Centraliza o container horizontalmente */
     box-sizing: border-box;
-    gap: 10px;
+    margin-top: 10px;
 }
 
 #container > article {
     width: 100%;
     max-width: 20rem; /* Limita a largura máxima dos cards */
-    height: 45rem;
+    height: 53rem;
     border: solid black 5px;
     border-radius: 5px;
-    margin: .5rem;
-    padding: .3rem;
+    margin: 0.5rem;
+    padding: 0.3rem;
     background-color: black;
     box-sizing: border-box;
+}
+
+#container > article:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 #container img {
@@ -91,14 +127,16 @@ html, body {
     font-style: italic;
 }
 
-/* Media query para telas maiores que 768px */
-@media (min-width: 768px) {
-    #container {
-        grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas maiores */
-        justify-content: center;
-        align-items: start; /* Alinha os itens no topo do container */
-       
-        
+/* Media query para telas menores que 768px */
+@media (max-width: 768px) {
+    #selecionaGenero {
+        display: block;
+        margin: 10px auto;
+        font-size: 1rem;
+    }
+
+    #filtros button {
+        display: none; /* Oculta os botões em telas pequenas */
     }
 
     #campoPesquisa {
@@ -107,25 +145,52 @@ html, body {
     }
 
     #filtros {
-        flex-direction: row; /* Coloca os botões de filtro em linha em telas maiores */
+        flex-direction: column; /* Coloca os botões de filtro em coluna em telas pequenas */
         align-items: center;
-    }
-
-    #filtros button {
-        width: auto; /* Os botões de filtro terão tamanho automático */
-        margin-bottom: 0; /* Remove o espaçamento entre os botões */
+        gap: 10px;
     }
 }
 
-
-@media (min-width: 1024px){
-    #container {
-        margin-left: 5%;
-        grid-template-columns: repeat(4, 1fr); /* 3 colunas em telas maiores */
-        justify-content: center;
-        align-items: start; /* Alinha os itens no topo do container */
-       
-        
+/* Media query para telas maiores que 768px */
+@media (min-width: 768px) {
+    #logout{
+        width: 5%;
+        margin-left: 95%;
     }
-    
+
+    #selecionaGenero {
+        display: none; /* Oculta o select em telas grandes */
+    }
+
+    #filtros button {
+        display: inline-block; /* Exibe os botões em telas grandes */
+    }
+
+    #filtros {
+        flex-direction: row; /* Alinha os botões em linha */
+        align-items: center;
+    }
+
+    #campoPesquisa {
+        width: 80%; /* Ajusta o tamanho da barra de pesquisa */
+        margin: 10px auto;
+    }
+
+    #container {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas médias */
+    }
+}
+
+/* Media query para telas entre 1024px e 1300px */
+@media (min-width: 1024px) and (max-width: 1300px) {
+    #container {
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas em telas maiores */
+    }
+}
+
+/* Media query para telas maiores que 1300px */
+@media (min-width: 1301px) {
+    #container {
+        grid-template-columns: repeat(5, 1fr); /* 5 colunas em telas grandes */
+    }
 }

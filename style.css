@@ -12,7 +12,7 @@ body {
     padding: 0;
     min-height: 100vh; /* Faz o body ocupar a tela inteira */
     box-sizing: border-box;
-    background-image: url('fundo.jpg'); /* Substitua 'fundo.jpg' pelo caminho da sua imagem */
+    background-image: url('assets/fundo.jpg'); /* Substitua 'fundo.jpg' pelo caminho da sua imagem */
     background-size: cover; /* Faz a imagem cobrir toda a área */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Evita que a imagem se repita */

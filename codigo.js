@@ -9,13 +9,19 @@ const pega_json = async (caminho) => {
 const container = document.getElementById("container");
 const campoPesquisa = document.getElementById('campoPesquisa');
 
-let filtroAtuais = 'masculino';  // Filtro inicial padrão
+let filtroAtuais = '';  // Filtro inicial padrão
 let dadosAtuais = {};  // Armazena os dados carregados para evitar duplicação
 let carregando = false;  // Indicador de carregamento
 
 campoPesquisa.addEventListener('input', () => {
     carregarDados(filtroAtuais);  // Atualiza os dados conforme o filtro e o texto da pesquisa
 });
+
+document.getElementById('selecionaGenero').addEventListener('change', (event) => {
+    const filtro = event.target.value;
+    carregarDados(filtro);
+});
+
 
 const manipulaClick = (e) => {
     const id = e.currentTarget.dataset.id;
@@ -44,6 +50,7 @@ const montaCard = (atleta) => {
     descri.innerHTML = atleta.detalhes;
     cartao.appendChild(descri);
 
+    
     cartao.onclick = manipulaClick;
 
     cartao.dataset.id = atleta.id;
@@ -118,5 +125,5 @@ document.getElementById('logout').onclick = () => {
     sessionStorage.removeItem('logado');
     window.location.href = "index.html";
 };
-    carregarDados('masculino'); // Exemplo de carregamento de dados, ajuste conforme seu código
+
 
