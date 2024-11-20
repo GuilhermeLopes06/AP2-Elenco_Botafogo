@@ -97,7 +97,7 @@ html, body {
 #container > article {
     width: 100%;
     max-width: 20rem; /* Limita a largura máxima dos cards */
-    height: 53rem;
+    height: 57rem;
     border: solid black 5px;
     border-radius: 5px;
     margin: 0.5rem;
