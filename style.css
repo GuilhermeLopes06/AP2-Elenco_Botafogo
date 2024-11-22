@@ -1,28 +1,28 @@
-/* Importando a fonte */
+
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
 
-/* Estilização do body */
+
 body {
     font-family: 'Libre Baskerville', serif;
     display: flex;
-    flex-direction: column; /* Layout em coluna por padrão */
-    align-items: center; /* Centraliza elementos verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Faz o body ocupar a tela inteira */
+    min-height: 100vh;
     box-sizing: border-box;
-    background-image: url('assets/fundo.jpg'); /* Substitua 'fundo.jpg' pelo caminho da sua imagem */
-    background-size: cover; /* Faz a imagem cobrir toda a área */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-image: url('assets/fundo.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
 }
 
-/* Estilização do #capa */
+
 #capa {
     color: #f9f9f9;
     text-align: center;
-    margin: 0 auto; /* Centraliza o elemento horizontalmente */
+    margin: 0 auto; 
 }
 
 #capa h1{
@@ -30,40 +30,39 @@ body {
 }
 
 .escudo {
-    width: 100px; /* Ajusta o tamanho da imagem */
-    height: auto; /* Mantém a proporção */
+    width: 100px; 
+    height: auto; 
     display: block;
-    margin: 0 auto; /* Centraliza a imagem */
+    margin: 0 auto;
 }
 
-/* Estilização do #login */
 #login {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%; /* Largura responsiva */
-    max-width: 400px; /* Largura máxima */
-    margin: 20px auto; /* Espaçamento ao redor */
+    width: 70%; 
+    max-width: 400px; 
+    margin: 20px auto; 
     padding: 20px;
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 8px; /* Bordas arredondadas */
-    background-color: #f9f9f9; /* Fundo leve */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
 #login input {
-    width: 100%; /* Ocupa toda a largura disponível */
-    max-width: 350px; /* Limita a largura */
+    width: 100%; 
+    max-width: 350px;
     height: 40px;
-    margin-bottom: 15px; /* Espaçamento entre os campos */
+    margin-bottom: 15px; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 #login button {
-    width: 100%; /* Ocupa toda a largura */
-    max-width: 150px; /* Largura máxima */
+    width: 100%; 
+    max-width: 150px; 
     padding: 10px;
     background-color: orange;
     color: white;
@@ -73,26 +72,26 @@ body {
 }
 
 #login button:hover {
-    background-color: #00ced1; /* Cor ao passar o mouse */
+    background-color: #00ced1;
 }
 
-/* Responsividade: dispositivos maiores */
+
 @media (min-width: 768px) {
     body {
-        flex-direction: row; /* Organiza os elementos lado a lado */
-        align-items: center; /* Centraliza verticalmente */
-        justify-content: center; /* Centraliza horizontalmente */
+        flex-direction: row;
+        align-items: center; 
+        justify-content: center; 
         gap: 8%;
     }
 
     #capa {
-        margin-left: 10%; /* Espaçamento entre capa e login */
+        margin-left: 10%;
         width: 40%;
     }
 
     #login {
-        margin: 0; /* Remove margens extras */
-        width: 100%; /* Ajusta automaticamente a largura */
-        margin-right: 15%; /* Espaçamento entre capa e login */
+        margin: 0;
+        width: 100%;
+        margin-right: 15%;
     }
 }

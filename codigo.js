@@ -9,12 +9,12 @@ const pega_json = async (caminho) => {
 const container = document.getElementById("container");
 const campoPesquisa = document.getElementById('campoPesquisa');
 
-let filtroAtuais = '';  // Filtro inicial padrão
-let dadosAtuais = {};  // Armazena os dados carregados para evitar duplicação
-let carregando = false;  // Indicador de carregamento
+let filtroAtuais = ''; 
+let dadosAtuais = {}; 
+let carregando = false; 
 
 campoPesquisa.addEventListener('input', () => {
-    carregarDados(filtroAtuais);  // Atualiza os dados conforme o filtro e o texto da pesquisa
+    carregarDados(filtroAtuais);  
 });
 
 document.getElementById('selecionaGenero').addEventListener('change', (event) => {
@@ -60,67 +60,66 @@ const montaCard = (atleta) => {
     return cartao;
 };
 
-// Função para carregar dados com base no filtro e texto de pesquisa
 const carregarDados = (filtro) => {
-    if (carregando) return;  // Impede múltiplos carregamentos simultâneos
+    if (carregando) return; 
 
-    // Limpa o container ANTES de adicionar os novos cards
+    
     container.innerHTML = ""; 
 
-    const textoPesquisa = campoPesquisa.value.toLowerCase(); // Pega o texto da pesquisa
+    const textoPesquisa = campoPesquisa.value.toLowerCase();
 
-    // Verifica se já temos os dados carregados para o filtro atual
+   
     if (dadosAtuais[filtro]) {
-        // Se os dados já estão carregados, filtra os dados conforme a pesquisa
+       
         const dadosFiltrados = dadosAtuais[filtro].filter((atleta) =>
-            atleta.nome.toLowerCase().includes(textoPesquisa)  // Verifica se o texto está em qualquer parte do nome
+            atleta.nome.toLowerCase().includes(textoPesquisa)
         );
         
-        // Adiciona os cards ao container
+       
         dadosFiltrados.forEach((atleta) => {
             container.appendChild(montaCard(atleta));
         });
     } else {
-        // Caso contrário, faça a requisição para a API
-        carregando = true; // Marca como carregando
+       
+        carregando = true; 
 
         pega_json(`${urlBase}${filtro}`).then((r) => {
-            // Armazena os dados carregados para o filtro atual
+            
             dadosAtuais[filtro] = r;
 
-            // Filtra os dados conforme a pesquisa
+            
             const dadosFiltrados = r.filter((atleta) =>
-                atleta.nome.toLowerCase().includes(textoPesquisa)  // Verifica se o texto está em qualquer parte do nome
+                atleta.nome.toLowerCase().includes(textoPesquisa)  
             );
             
-            // Adiciona os cards ao container
+            
             dadosFiltrados.forEach((atleta) => {
                 container.appendChild(montaCard(atleta));
             });
 
-            carregando = false; // Marca como não carregando após a requisição
+            carregando = false; 
         }).catch((err) => {
             console.error("Erro ao carregar dados:", err);
-            carregando = false; // Garante que o carregamento seja finalizado mesmo em caso de erro
+            carregando = false; 
         });
     }
 };
 
-// Filtros de gênero
+
 document.querySelectorAll('#filtros button').forEach(button => {
     button.addEventListener('click', () => {
-        // Quando o filtro "Todos" é clicado, fazemos a requisição com "all"
+        
         const filtro = button.textContent.toLowerCase();
 
-        // Ajusta o filtro com base no texto do botão
+        
         filtroAtuais = filtro === 'todos' ? 'all' : filtro;
 
-        // Carrega os dados para o filtro selecionado
+      
         carregarDados(filtroAtuais); 
     });
 });
 
-// Logout: limpa o sessionStorage e redireciona para a página de login
+
 document.getElementById('logout').onclick = () => {
     sessionStorage.removeItem('logado');
     window.location.href = "index.html";

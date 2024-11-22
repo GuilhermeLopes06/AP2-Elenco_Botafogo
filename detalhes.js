@@ -11,20 +11,20 @@ if (sessionStorage.getItem('logado')) {
     const montaPagina = (dados) => {
         const body = document.body;
     
-        // Imagem
+        
         const imagem = document.createElement('img');
         imagem.src = dados.imagem;
         imagem.classList.add('jogador-imagem');
         body.appendChild(imagem);
     
-        // Nome
+       
         const nome = document.createElement('h1');
         nome.innerHTML = dados.nome;
-        nome.classList.add('jogador-nome'); // Classe para estilos adicionais
+        nome.classList.add('jogador-nome');
         body.appendChild(nome);
     
-        // Estatísticas (posição, altura, etc.)
-        const stats = document.createElement('div'); // Contêiner para as estatísticas
+        
+        const stats = document.createElement('div'); 
         stats.classList.add('jogador-stats-container');
     
         const posicao = document.createElement('h3');
@@ -58,7 +58,7 @@ if (sessionStorage.getItem('logado')) {
         
 
     
-        body.appendChild(stats); // Adiciona o contêiner de estatísticas ao body
+        body.appendChild(stats); 
         document.body.appendChild(voltar);
     };
 
