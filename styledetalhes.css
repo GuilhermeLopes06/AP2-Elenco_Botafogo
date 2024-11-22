@@ -36,10 +36,6 @@ body a {
     cursor: pointer;
 }
 
-a:hover {
-    transform: scale(1.05) translateX(-50%); /* Aumenta o tamanho e mantém o botão centralizado */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
 .jogador-stats {
     margin: 5px 0; 
     border: 2px solid white;
